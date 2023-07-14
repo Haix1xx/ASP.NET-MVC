@@ -1,0 +1,7 @@
+﻿@inject AppDbContext dbContext
+
+@{
+    ViewData["Title"] = "Database Information";
+    var dbName = dbContext.Database;
+}
+<h1>@dbName</h1>

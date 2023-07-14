@@ -14,6 +14,8 @@ namespace MVC.Controllers
             _env = env;
             _products = products;
         }
+        [TempData]
+        public string StatusMessage { get; set; }
         public IActionResult Index()
         {
             _logger.LogInformation("Log to index of first controller");
@@ -47,7 +49,8 @@ namespace MVC.Controllers
             var product = _products.Products.Where(p => p.Id == id).FirstOrDefault();
             if (product == null)
             {
-                return NotFound();
+                StatusMessage = "Product not found";
+                return Redirect(Url.Action("Index", "Home") ?? "#");
             }
             return View(product);
 

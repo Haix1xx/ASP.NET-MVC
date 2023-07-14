@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
+using MVC.Models;
 using MVC.Services;
 
 namespace MVC
@@ -22,6 +25,55 @@ namespace MVC
                 options.ViewLocationFormats.Add("/MyView/{1}/{0}.cshtml");
             });
             builder.Services.AddSingleton<ProductServices>();
+            builder.Services.AddSingleton<PlanetServices>();
+
+            // ADD DB context
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("MVC");
+                options.UseSqlServer(connectionString);
+            });
+
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+                            .AddEntityFrameworkStores<AppDbContext>()
+                            .AddDefaultTokenProviders();
+
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                // Configure password
+                options.Password.RequiredLength = 12;
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
+                // Configure lockout
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+
+                // Configure user
+                options.User.RequireUniqueEmail = true;
+                // Configure log-in
+                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                options.SignIn.RequireConfirmedAccount = true;
+            });
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login/";
+                options.LogoutPath = "/logout/";
+                options.AccessDeniedPath = "/accessdenied/";
+            });
+
+
+            builder.Services.AddAuthentication().AddGoogle(options =>
+            {
+                var googleConfig = builder.Configuration.GetSection("Authentication:Google");
+                options.ClientId = googleConfig["ClientId"] ?? "";
+                options.ClientSecret = googleConfig["ClientSecret"] ?? "";
+                options.CallbackPath = "/login-from-google";
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -37,8 +89,22 @@ namespace MVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
+
+            //app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "first-route",
+                    pattern: "product/{id?}",
+                    defaults: new
+                    {
+                        controller = "First",
+                        action = "ViewProduct",
+                    });
+            });
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
