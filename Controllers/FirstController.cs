@@ -15,7 +15,7 @@ namespace MVC.Controllers
             _products = products;
         }
         [TempData]
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; set; } = default!;
         public IActionResult Index()
         {
             _logger.LogInformation("Log to index of first controller");

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using MVC.Data;
 using MVC.Models;
 using MVC.Services;
 
@@ -13,6 +14,12 @@ namespace MVC
 
             var builder = WebApplication.CreateBuilder(args);
 
+
+            //add email service
+            builder.Services.AddOptions();
+            var mailSetting = builder.Configuration.GetSection("MailSettings");
+            builder.Services.Configure<MailSettings>(mailSetting);
+            builder.Services.AddSingleton<IEmailSender, SendMailService>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
@@ -63,7 +70,7 @@ namespace MVC
             {
                 options.LoginPath = "/login/";
                 options.LogoutPath = "/logout/";
-                options.AccessDeniedPath = "/accessdenied/";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied.cshtml";
             });
 
 
@@ -73,6 +80,17 @@ namespace MVC
                 options.ClientId = googleConfig["ClientId"] ?? "";
                 options.ClientSecret = googleConfig["ClientSecret"] ?? "";
                 options.CallbackPath = "/login-from-google";
+            });
+
+            builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ViewManageMenu", policyBuidler =>
+                {
+                    policyBuidler.RequireAuthenticatedUser();
+                    policyBuidler.RequireRole(RoleName.Administrator);
+                });
             });
             var app = builder.Build();
 

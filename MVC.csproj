@@ -12,6 +12,7 @@
     <Folder Include="Areas\Database\Controllers\" />
     <Folder Include="Areas\Database\Data\" />
     <Folder Include="Areas\Database\Models\" />
+    <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Files\" />
     <Folder Include="NewFolder\" />
   </ItemGroup>

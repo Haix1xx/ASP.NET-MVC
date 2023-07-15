@@ -8,10 +8,10 @@ namespace MVC.Models
     {
         [Column(TypeName = "nvarchar")]
         [StringLength(200)]
-        public string HomeAddress { get; set; } = "";
+        public string? HomeAdress { get; set; } = default!;
 
         [DataType(DataType.Date)]
-        public DateTime? BirthDay { get; set; }
+        public DateTime? BirthDate { get; set; } = default!;
 
 
     }

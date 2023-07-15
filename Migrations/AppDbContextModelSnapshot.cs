@@ -163,7 +163,7 @@ namespace MVC.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("BirthDay")
+                    b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -177,8 +177,7 @@ namespace MVC.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("HomeAddress")
-                        .IsRequired()
+                    b.Property<string>("HomeAdress")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
