@@ -28,6 +28,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Contact" asp-controller="Contact" asp-action="SendContact">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <form asp-area="Database" asp-controller="DbManage" asp-action="SeedData" method="post">
+                                <input class="nav-link text-dark" type="submit" value="SeedData" />
+                            </form>
+                        </li>
                     </ul>
 
                     <partial name="_MenuManagePartial" />

@@ -275,3 +275,4 @@ D:\self\MVC\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptograph
 D:\self\MVC\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
 D:\self\MVC\obj\Debug\net6.0\MVC.MvcApplicationPartsAssemblyInfo.cs
 D:\self\MVC\bin\Debug\net6.0\libman.json
+D:\self\MVC\bin\Debug\net6.0\Bogus.dll

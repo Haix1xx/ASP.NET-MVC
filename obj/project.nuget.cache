@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "08Gv2R7C85uDWQdDvcK8ucgQI2s65+zT+8PEj/AHVqo4nz7NGtcbTS+Zm1xDefsP9AxgSy8uQsrI0wwGysHRmg==",
+  "dgSpecHash": "g4T0KYqtuddzuM1PogHZAod+0WhVsuwyEdnv/NSd+V5A37QzuTY4KgAAcTxRNZBZMuUmG+uz6MLLMaghSMyy4w==",
   "success": true,
   "projectFilePath": "D:\\self\\MVC\\MVC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\bogus\\34.0.2\\bogus.34.0.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -28,11 +28,24 @@ namespace MVC.Models
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasIndex(c => c.Slug);
+                entity.HasIndex(c => c.Slug).IsUnique();
+            });
+
+            modelBuilder.Entity<PostCategory>(entity =>
+            {
+                entity.HasKey(p => new {p.PostId, p.CategoryId});
+            });
+
+            modelBuilder.Entity<Post>(entity =>
+            {
+                entity.HasIndex(p => p.Slug).IsUnique();
             });
         }
 
         public virtual DbSet<Contact.Contact>? Contacts { get; set; }
         public virtual DbSet<Blog.Category>? Categories { get; set; }
+
+        public virtual DbSet<Blog.Post>? Posts { get; set; }
+        public virtual DbSet<Blog.PostCategory>? PostCategories { get; set; }
     }
 }
