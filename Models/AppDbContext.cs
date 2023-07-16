@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MVC.Models.Blog;
 using MVC.Models.Contact;
 
 namespace MVC.Models
@@ -25,8 +26,13 @@ namespace MVC.Models
                 }
             }
 
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.HasIndex(c => c.Slug);
+            });
         }
 
         public virtual DbSet<Contact.Contact>? Contacts { get; set; }
+        public virtual DbSet<Blog.Category>? Categories { get; set; }
     }
 }
