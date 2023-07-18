@@ -27,14 +27,14 @@ namespace MVC.Models.Blog
         [Display(Name = "Xuất bản")]
         public bool Published { set; get; }
 
-        public virtual IList<PostCategory> PostCategories { get; set; } = default!;
+        public virtual IList<PostCategory>? PostCategories { get; set; }
 
-        [Required]
+        // [Required]
         [Display(Name = "Tác giả")]
-        public string AuthorId { set; get; } = default!;
+        public string? AuthorId { set; get; }
         [ForeignKey("AuthorId")]
-        [Display(Name = "Tác giả")]
-        public virtual AppUser Author { set; get; } = default!;
+        [Display(Name = "Tác giả -")]
+        public virtual AppUser? Author { set; get; }
 
         [Display(Name = "Ngày tạo")]
         public DateTime DateCreated { set; get; }

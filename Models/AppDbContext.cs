@@ -40,6 +40,7 @@ namespace MVC.Models
             {
                 entity.HasIndex(p => p.Slug).IsUnique();
             });
+
         }
 
         public virtual DbSet<Contact.Contact>? Contacts { get; set; }

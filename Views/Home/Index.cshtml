@@ -7,3 +7,14 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<textarea id="summernote"></textarea>
+<textarea id="summernote1"></textarea>
+@{
+    var summernote = new Summernote("#summernote", true);
+    var summernote1 = new Summernote("#summernote1", false);
+}
+
+<partial name="_Summernote" model="@summernote"/>
+<partial name="_Summernote" model="@summernote1" />
+
