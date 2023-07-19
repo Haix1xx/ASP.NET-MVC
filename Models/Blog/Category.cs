@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVC.Models.Blog
@@ -34,5 +36,29 @@ namespace MVC.Models.Blog
         [Display(Name = "Danh mục cha")]
 
         public Category? ParentCategory { set; get; }
+
+        public void ChildCategoryIds(List<int> lists, ICollection<Category>? childcates = null)
+        {
+            if (childcates == null)
+                return;
+            foreach (var category in childcates)
+            {
+                lists.Add(category.Id);
+                ChildCategoryIds(lists, category?.CategoryChildren);
+
+            }
+        }
+
+        public IEnumerable<Category>? GetParents()
+        {
+            Stack<Category> parents = new Stack<Category>();
+            var tmp = ParentCategory;
+            while(tmp != null)
+            {
+                parents.Push(tmp);
+                tmp = tmp.ParentCategory;
+            }
+            return parents;
+        }
     }
 }

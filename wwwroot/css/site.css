@@ -21,7 +21,7 @@ body {
 }
 
 .app-navbar {
-  background: rgba(0, 0, 0, 0.8);
+  background: #241515;
 }
 .app-navbar .text-dark {
   color: #b9c3ce !important;
@@ -36,8 +36,31 @@ body {
   color: #d727da !important;
 }
 .app-navbar .dropdown-toggle {
-  border-color: #a562ad !important;
-  color: silver !important;
+  border-color: transparent !important;
+  color: white !important;
+}
+
+.categorysidebar ul, .categorysidebar li {
+  list-style: none;
+  padding-left: 25px;
+}
+.categorysidebar a {
+  text-decoration: none;
+}
+.categorysidebar a:hover {
+  color: #e42828;
+}
+.categorysidebar a.active {
+  color: red;
+}
+.categorysidebar > ul > li > a {
+  font-weight: bold;
+}
+.categorysidebar h3 {
+  text-transform: uppercase;
+  font-size: 1.3em;
+  border-bottom: 1px solid #a57dea;
+  padding-bottom: 10px;
 }
 
 .contact-firstcol {
@@ -57,4 +80,21 @@ body {
 .form-contact .btn-primary {
   background-color: #9854a0;
   border-color: #9854a0;
+}
+
+.app-footer {
+  background: #120909;
+  color: white;
+  text-align: center;
+}
+
+.detail-post h1 {
+  font-weight: 300;
+}
+.detail-post .sapo {
+  font-weight: 500;
+  font-style: italic;
+}
+.detail-post img {
+  max-width: 100%;
 }

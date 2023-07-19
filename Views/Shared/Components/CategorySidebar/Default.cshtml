@@ -1,0 +1,41 @@
+﻿@model MVC.Views.Shared.Components.CategorySidebar.CategorySidebar.CategorySidebarData
+@using MVC.Views.Shared.Components.CategorySidebar
+@{
+    var level = Model.Level;
+}
+@if (Model.Categories.Count() > 0)
+{
+    @if (level == 0)
+    {
+        @Html.Raw("<div class=\"categorysidebar\">")
+        <h3>
+            <a asp-area="Blog" asp-controller="ViewPost" asp-route-categoryslug="">Tất cả chuyên mục</a>
+        </h3>
+    }
+    <ul>
+        @foreach(var category in Model.Categories)
+        {
+            var cssActive = (category.Slug == Model.CategorySlug) ? "active" : null;
+            <li>
+                <a class="@cssActive" asp-controller="ViewPost" asp-action="Index" asp-route-categoryslug="@category.Slug">
+                    @category.Title
+                </a>
+            </li>
+            @if (category.CategoryChildren?.Count > 0)
+            {
+                @await Component.InvokeAsync("MVC.Views.Shared.Components.CategorySidebar.CategorySidebar",
+                new CategorySidebar.CategorySidebarData()
+                {
+                    Categories = category.CategoryChildren,
+                    Level = level + 1,
+                    CategorySlug = ViewBag.categoryslug
+                })
+            }
+        }
+        
+    </ul>
+    @if (level == 0)
+    {
+        @Html.Raw("</div>")
+    }
+}

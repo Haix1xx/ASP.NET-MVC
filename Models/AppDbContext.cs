@@ -43,10 +43,10 @@ namespace MVC.Models
 
         }
 
-        public virtual DbSet<Contact.Contact>? Contacts { get; set; }
-        public virtual DbSet<Blog.Category>? Categories { get; set; }
+        public virtual DbSet<Contact.Contact> Contacts { get; set; } = default!;
+        public virtual DbSet<Blog.Category> Categories { get; set; } = default!;
 
-        public virtual DbSet<Blog.Post>? Posts { get; set; }
-        public virtual DbSet<Blog.PostCategory>? PostCategories { get; set; }
+        public virtual DbSet<Blog.Post> Posts { get; set; } = default!; 
+        public virtual DbSet<Blog.PostCategory> PostCategories { get; set; } = default!;
     }
 }

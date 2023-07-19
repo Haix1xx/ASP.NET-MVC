@@ -1,5 +1,5 @@
 ﻿.app-navbar {
-    background: rgba(0,0,0,0.8);
+    background: #241515;
 
     .text-dark {
         color: #b9c3ce !important;
@@ -18,7 +18,35 @@
     }
 
     .dropdown-toggle {
-        border-color: #a562ad !important;
-        color: silver !important;
+        border-color: transparent !important;
+        color: white !important;
+    }
+}
+
+.categorysidebar {
+    ul, li {
+        list-style: none;
+        padding-left: 25px;
+    }
+
+    a {
+        text-decoration: none;
+        &:hover {
+            color: #e42828
+        }
+
+        &.active {
+            color: red;
+        }
+    }
+    > ul > li > a {
+        font-weight: bold;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        font-size: 1.3em;
+        border-bottom: 1px solid #a57dea;
+        padding-bottom: 10px;
     }
 }
