@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MVC.Models.Blog;
 using MVC.Models.Contact;
+using MVC.Models.Product;
 
 namespace MVC.Models
 {
@@ -41,6 +42,21 @@ namespace MVC.Models
                 entity.HasIndex(p => p.Slug).IsUnique();
             });
 
+
+            modelBuilder.Entity<ProductModel>(entity =>
+            {
+                entity.HasIndex(p => p.Slug).IsUnique();
+            });
+
+            modelBuilder.Entity<CategoryProduct>(entity =>
+            {
+                entity.HasIndex(c =>c.Slug).IsUnique();
+            });
+
+            modelBuilder.Entity<ProductCategoryProduct>(entity =>
+            {
+                entity.HasKey(p => new { p.ProductId, p.CategoryId });
+            });
         }
 
         public virtual DbSet<Contact.Contact> Contacts { get; set; } = default!;
@@ -48,5 +64,12 @@ namespace MVC.Models
 
         public virtual DbSet<Blog.Post> Posts { get; set; } = default!; 
         public virtual DbSet<Blog.PostCategory> PostCategories { get; set; } = default!;
+
+        public virtual DbSet<ProductModel> Products { get; set; }
+
+        public virtual DbSet<CategoryProduct> CategoryProducts { get; set; }
+
+        public virtual DbSet<ProductCategoryProduct> ProductCategoryProducts { get; set; }
+
     }
 }

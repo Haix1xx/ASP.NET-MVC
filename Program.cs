@@ -32,7 +32,6 @@ namespace MVC
                 // {2}: ten area
                 options.ViewLocationFormats.Add("/MyView/{1}/{0}.cshtml");
             });
-            builder.Services.AddSingleton<ProductServices>();
             builder.Services.AddSingleton<PlanetServices>();
 
             // ADD DB context
